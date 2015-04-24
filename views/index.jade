@@ -1,0 +1,71 @@
+extends layout
+
+block content
+  h1 Contact List
+
+  table.table
+    tr
+      td
+        table.table
+          tr
+            td
+              button.btn.btn-primary.add-contact-btn(type="button" ng-click="showAddForm()") Add New Contact
+      td
+        table.table
+          tr(ng-repeat="contact in contactlist")
+            td 
+              | Name: {{contact.name}}
+              br
+              | Email: {{contact.email}}
+              br
+              | Phone: {{contact.phone}}
+              br
+              | 
+              button.btn.btn-primary.my-btn(type="button" ng-click="deletePerson(contact._id)") Delete
+              | 
+              button#editBtn.btn.btn-primary.my-btn(type="button" ng-click="showEditForm(contact._id)") Edit
+  
+  div#addContactDialog.modal.fade
+    div.modal-dialog
+      div.modal-content
+        div.modal-header
+          h4.modal-title Add A New Contact
+          button.close(type="button" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden=true) &times;
+        div.modal-body
+          form 
+            .form-group
+              label.control-label Name
+              input.form-control(type="text" ng-model="person.name")
+            .form-group
+              label.control-label Email
+              input.form-control(type="text" ng-model="person.email")
+            .form-group
+              label.control-label Phone
+              input.form-control(type="text" ng-model="person.phone")  
+        div.modal-footer
+          button.btn.btn-default(type="button" data-dismiss="modal") Close
+          button#addBtn.btn.btn-primary(type="button") Add
+  
+  div#editContactDialog.modal.fade
+    div.modal-dialog
+      div.modal-content
+        div.modal-header
+          h4.modal-title Edit A Contact
+          button.close(type="button" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden=true) &times;
+        div.modal-body
+          form 
+            .form-group
+              label.control-label Name
+              input.form-control(type="text" ng-model="person.name")
+            .form-group
+              label.control-label Email
+              input.form-control(type="text" ng-model="person.email")
+            .form-group
+              label.control-label Phone
+              input.form-control(type="text" ng-model="person.phone")  
+        div.modal-footer
+          button.btn.btn-default(type="button" data-dismiss="modal") Close
+          button#updateBtn.btn.btn-primary(type="button") Update
+  
